@@ -29,3 +29,14 @@ export const listProducts = async()=> {
         return null
     }
 }
+
+export const getProduct = async(id:string)=>{
+    try {
+        const response = await database.getDocument(Config.databaseId!, Config.productCollectionId!, id)
+        if(!response) throw new Error('No product found')
+        return response
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
